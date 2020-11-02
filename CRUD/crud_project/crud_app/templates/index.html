@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 list</title>
+</head>
+<body>
+        <a href="/board/new">New - 새로운 글쓰기</a>
+        <ul>
+            <!-- 리스트에서 제목, 내용 띄우기-->
+            <!-- for문 -->
+            {% for post in posts %}
+                <!--post의 pk속성을 통해 그 위치로 이동하는 링크를 제목형식으로 형성.-->
+                <!-- pk는 글번호. 제목 표시. list형식으로 글 배열 -->
+                <li>{{post.pk}} | <a href="/board/{{post.pk}}">{{post.title}}</a></li>
+            {% endfor %}
+        </ul>
+    <input type="button" value="홈으로" onclick="location.href = '/'">
+</body>
+</html>
