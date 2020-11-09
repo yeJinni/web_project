@@ -8,12 +8,25 @@
     <h1>Post Detail</h1>
     <h2> Title: {{post.title}} </h2>
     <h2> Content: {{post.content}} </h2>
-    <a href="/board/index/">List</a>
-    <!--템플릿 변수: 쌍중괄호 사용해 선언.-->
-    <a href="/board/{{post.pk}}/edit/">Edit</a>
-    <a href="/board/{{post.pk}}/delete/">Delete</a>
+    <a href="{% url 'board:index' %}">List</a>
+    <a href="{% url 'board:edit' post.pk %}">Edit</a>
+    <a href="{% url 'board:delete' post.pk %}">Delete</a>
 
-    <input type="button" value="목록으로" onclick="location.href = '/board/index'">
+    <form action="{% url 'board:comments_create' post.pk %}" method="post">
+    {% csrf_token %}
+    댓글: <input type="text" name="content"/>
+         <input type="submit" value="Submit"/>
+    </form>
+
+    <ul>
+        {% for comment in post.comment_set.all %}
+        <li> {{comment.content}} <a href="{% url 'board:comments_delete' post.pk comment.pk %}">Delete</a> </li>
+        <!-- <a href="{% url 'board:comments_delete' post.pk comment.pk %}">Delete</a> -->
+        {% endfor %}
+    </ul>
+
+
+    <input type="button" value="목록으로" onclick="location.href = '{% url 'board:index' %}'">
     <input type="button" value="홈으로" onclick="location.href = '/'">
 </body>
 </html>

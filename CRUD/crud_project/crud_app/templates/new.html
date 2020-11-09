@@ -5,12 +5,13 @@
     <title>crud_project</title>
 </head>
 <body>
-    <form action="/board/create/", method="post">
+    <form action="{% url 'board:create' %}", method="post">
         <!--보안기능 있는 csrf토큰. POST기능 사용시 필요 -->
         {% csrf_token %}
         <input type="text" name="title"/>
         <input type="text" name="content"/>
         <input type="submit" value="Submit"/>
+        <!-- 제출 누르면 form action태그의 url로 반환된다. -->
     </form>
 </body>
 </html>

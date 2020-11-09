@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1> 성공적으로 CRUD를 생성 했습니다! </h1>
-    <input type="button" value="목록으로" onclick="location.href = '/board/index'">
+    <input type="button" value="목록으로" onclick="location.href = '{% url 'board:index' %}'">
     <input type="button" value="홈으로" onclick="location.href = '/'">
 </body>
 </html>
